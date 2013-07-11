@@ -1,5 +1,8 @@
 require 'sinatra'
+require 'sinatra/activerecord'
 
-get '/' do
-  erb :index
+set :database, "sqlite3:///nai.rb"
+
+class User < ActiveRecord::Base
+
 end
