@@ -1,2 +1,2 @@
-require "./app"
+require "./nai_warikan"
 run Sinatra::Application
