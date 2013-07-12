@@ -12,6 +12,19 @@ get "/" do
   erb :"users/index"
 end
 
+get "/users/:id" do
+  @user = User.find(params[:id])
+  @name = @user.name
+  erb :"users/show"
+end
+
+
+get "/about" do
+  @name = "about"
+  erb :"pages/about"
+end
+
+
 helpers do
   def name
     if @name
