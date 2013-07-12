@@ -12,18 +12,6 @@
 
 ActiveRecord::Schema.define(version: 20130712151445) do
 
-  create_table "lunches", force: true do |t|
-    t.integer  "attendee_id"
-    t.integer  "payer_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "lunches_users", id: false, force: true do |t|
-    t.integer "lunch_id"
-    t.integer "user_id"
-  end
-
   create_table "tabulations", force: true do |t|
     t.integer  "user_id"
     t.integer  "guest_id"
