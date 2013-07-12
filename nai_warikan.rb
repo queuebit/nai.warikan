@@ -4,7 +4,13 @@ require 'sinatra/activerecord'
 set :database, "sqlite3:///nai_warikan.db"
 
 class User < ActiveRecord::Base
+  has_many :tabulations, :foreign_key => :user_id
+  has_many :guests, :through => :tabulations, :class_name => "User"
+end
 
+class Tabulation < ActiveRecord::Base
+  belongs_to :guest, :class_name => "User"
+  belongs_to :user
 end
 
 get "/" do
@@ -15,6 +21,7 @@ end
 get "/users/:id" do
   @user = User.find(params[:id])
   @name = @user.name
+  @tabs = Tabulation.where(user_id: params[:id])
   erb :"users/show"
 end
 

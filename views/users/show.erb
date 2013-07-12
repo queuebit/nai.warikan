@@ -1,2 +1,8 @@
 <h1><%= @user.name %></h1>
-List of meals will go here
+<ul>
+  <% @tabs.each do |tab| %>
+    <li>
+    <p><%= tab.user.name %> paid for <%= tab.guest.name %> at <%= tab.created_at %></p>
+    </li>
+  <% end %>
+</ul>
