@@ -1,0 +1,10 @@
+<h1>welcome to nai warikan</h1>
+<ul>
+  <% @users.each do |user| %>
+    <li>
+    <h2><a href="/users/<%= user.id %>"><%= user.name %></a>
+      <span><%= pretty_date(user.created_at) %></span>
+    </h2>
+    </li>
+  <% end %>
+</ul>
