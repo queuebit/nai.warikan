@@ -21,8 +21,18 @@ end
 get "/users/:id" do
   @user = User.find(params[:id])
   @name = @user.name
-  @tabs = Tabulation.where(user_id: params[:id])
+  @guests = User.where("id != ?", params[:id])
+  @tabs = Tabulation.where("user_id = ? OR guest_id = ?", params[:id], params[:id]).order('created_at desc')
   erb :"users/show"
+end
+
+post "/users/:id" do
+  @tabulation = Tabulation.new(user_id: params[:id], guest_id: params[:guest_id])
+  if @tabulation.save
+    redirect "users/#{params[:id]}"
+  else 
+    "Sorry it failed because of #{params.inspect}"
+  end
 end
 
 
